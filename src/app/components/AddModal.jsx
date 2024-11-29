@@ -6,7 +6,7 @@ export default function AddModal({ closeModal }) {
     title: "",
     description: "",
     category: "Health",
-    date: "", // Added date field
+    date: "", 
   });
 
   const handleInputChange = (e) => {
