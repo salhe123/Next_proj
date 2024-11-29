@@ -6,7 +6,7 @@ import Link from "next/link";
 export default function Navbar() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const closeModal = () => {
-    setIsModalOpen(false);  // Close the modal when called
+    setIsModalOpen(false);  
   };
 
   return (

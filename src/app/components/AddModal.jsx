@@ -1,12 +1,12 @@
-"use client"
-import { useState } from 'react';
+"use client";
+import { useState } from "react";
 
-export default function AddModal({ closeModal, }) {
+export default function AddModal({ closeModal }) {
   const [newBlog, setNewBlog] = useState({
-    title: '',
-    description: '',
-    category: 'Health',
-    date: '', // Added date field
+    title: "",
+    description: "",
+    category: "Health",
+    date: "", // Added date field
   });
 
   const handleInputChange = (e) => {
@@ -20,29 +20,32 @@ export default function AddModal({ closeModal, }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('https://backend.abyssiniasoftware.com/api/blogs', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(newBlog),
-      });
+      const response = await fetch(
+        "https://backend.abyssiniasoftware.com/api/blogs",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newBlog),
+        }
+      );
 
       const result = await response.json();
       if (response.ok) {
-        console.log('Blog added successfully:', result);
-        closeModal();  // Close the modal after successful submission
+        console.log("Blog added successfully:", result);
+        closeModal();
       } else {
-        console.error('Failed to add blog:', result);
+        console.error("Failed to add blog:", result);
       }
     } catch (error) {
-      console.error('Error:', error);
+      console.error("Error:", error);
     }
   };
 
   return (
     <div className="fixed inset-0 flex justify-center items-center z-50 bg-black bg-opacity-50">
-      <div className="relative bg-white shadow-lg rounded-lg shadow-black p-6 max-w-md w-full">
+      <div className="relative bg-gray-300 shadow-lg rounded-lg shadow-black p-6 max-w-md w-full">
         <div className="flex justify-between items-center">
           <h3 className="text-xl font-semibold">Add New Blog</h3>
           <button
@@ -50,15 +53,24 @@ export default function AddModal({ closeModal, }) {
             onClick={closeModal}
             className="text-gray-400 hover:text-gray-900"
           >
-            <svg className="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14" fill="none" stroke="currentColor">
+            <svg
+              className="w-4 h-4"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 14 14"
+              fill="none"
+              stroke="currentColor"
+            >
               <path d="M1 1L7 7M7 7l6-6M7 7l6 6" strokeWidth="2" />
             </svg>
           </button>
         </div>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label htmlFor="title" className="block text-sm">Title</label>
+            <label htmlFor="title" className="block text-sm">
+              Title
+            </label>
             <input
+              placeholder="Enter the title"
               type="text"
               id="title"
               name="title"
@@ -69,8 +81,11 @@ export default function AddModal({ closeModal, }) {
             />
           </div>
           <div className="mb-4">
-            <label htmlFor="description" className="block text-sm">Description</label>
+            <label htmlFor="description" className="block text-sm">
+              Description
+            </label>
             <textarea
+              placeholder="Enter the description"
               id="description"
               name="description"
               value={newBlog.description}
@@ -80,7 +95,9 @@ export default function AddModal({ closeModal, }) {
             />
           </div>
           <div className="mb-4">
-            <label htmlFor="category" className="block text-sm">Category</label>
+            <label htmlFor="category" className="block text-sm">
+              Category
+            </label>
             <select
               id="category"
               name="category"
@@ -96,7 +113,9 @@ export default function AddModal({ closeModal, }) {
             </select>
           </div>
           <div className="mb-4">
-            <label htmlFor="date" className="block text-sm">Date</label>
+            <label htmlFor="date" className="block text-sm">
+              Date
+            </label>
             <input
               type="date"
               id="date"
