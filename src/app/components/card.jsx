@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { formatDistanceToNow } from 'date-fns';
 import Modal from './editModal';
+import Link from 'next/link';
 
 export default function Card({ blog }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -38,7 +39,7 @@ export default function Card({ blog }) {
   };
 
   return (
-    <div className="max-w-sm bg-white border border-gray-200 h-96 rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-700">
+    <Link href={`/blogs/${blog.id}`} className="max-w-sm h-96 bg-white border border-gray-200 rounded-lg shadow-lg transition-all hover:shadow-2xl hover:scale-105 transform duration-300 ease-in-out dark:bg-gray-800 dark:border-gray-700 dark:hover:shadow-2xl dark:hover:scale-105">
       <div className="p-6">
         <h5 className="text-xl font-semibold text-gray-900 dark:text-white">{blog.title}</h5>
         <p className="text-sm text-gray-500 dark:text-gray-400">{blog.description}</p>
@@ -49,20 +50,20 @@ export default function Card({ blog }) {
         <div className="flex gap-4 mt-6">
           <button
             onClick={() => setIsModalOpen(true)}
-            className="px-4 py-2 bg-blue-600 text-white rounded-lg"
+            className="px-4 py-2 bg-blue-600 text-white rounded-lg transition-all hover:bg-blue-700 focus:outline-none"
           >
             Edit
           </button>
           <button
             type="button"
             onClick={handleDelete} // Directly call handleDelete when Delete button is clicked
-            className="px-4 py-2 bg-red-600 text-white rounded-lg"
+            className="px-4 py-2 bg-red-600 text-white rounded-lg transition-all hover:bg-red-700 focus:outline-none"
           >
             Delete
           </button>
         </div>
       </div>
       {isModalOpen && <Modal blog={blog} closeModal={closeModal} />}
-    </div>
+    </Link>
   );
 }

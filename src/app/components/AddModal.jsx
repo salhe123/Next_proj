@@ -1,7 +1,7 @@
 "use client"
 import { useState } from 'react';
 
-export default function AddModal({ closeModal, addNewBlog }) {
+export default function AddModal({ closeModal, }) {
   const [newBlog, setNewBlog] = useState({
     title: '',
     description: '',
@@ -31,7 +31,6 @@ export default function AddModal({ closeModal, addNewBlog }) {
       const result = await response.json();
       if (response.ok) {
         console.log('Blog added successfully:', result);
-        addNewBlog(result);  // Call the function passed in the prop to update the state of the parent component
         closeModal();  // Close the modal after successful submission
       } else {
         console.error('Failed to add blog:', result);
